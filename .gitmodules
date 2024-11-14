@@ -1,0 +1,3 @@
+[submodule "copycat"]
+	path = copycat
+	url = ./copycat
