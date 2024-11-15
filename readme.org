@@ -8,14 +8,14 @@ This repository consists of a collection of FARG-related software for you to exp
 ** Goal
 *fargtown*'s goal is to archive and package open source FARG projects they can may run as intended within a [[https://nixos.org][Nix]] development environment.
 * Projects
-| Project          | Language    | Author            | Notes             | Currentl Runs              | Source                  |
-|------------------+-------------+-------------------+-------------------+----------------------------+-------------------------|
-| [[./copycat-ajhager][copycat-ajhager]]  | Python      | ajhager           |                   | *Yes*: `nix run`             | [[https://github.com/ajhager/copycat][ajhager/copycat]]         |
-| [[./copycat-jalanb][copycat-jalanb]]   | Python      | jalanb            | Clean.            | *Yes*: `nix run`.            | [[https://github.com/jalanb/co.py.cat][jalanb/co.py.cat]]        |
-| [[./copycat-jalanb][copycat-mitchell]] | Common Lisp | Michelle Mitchell | Original Copycat. | *No*: Ancient dependencies.  | [[https://github.com/fargonauts/copycat-lisp][fargonauts/copycat-lisp]] |
-| [[./copycat-paul][copycat-paul]]     | JavaScript  | Paul-G            | Good.             | *Yes*: open [[./copycat-paul/dist/index.html][dist/index.html]]. | [[https://github.com/Paul-G2/copycat-js][Paul-G2/copycat-js]]      |
-| [[./seqsee-amahalbal][seqsee-amahalbal]] | Python      | Abhijit Mahabal   | FARG functions.   | ?                          | [[https://github.com/amahabal/PySeqsee][amahabal/PySeqsee]]       |
-| [[./metacat-marshall][metacat-marshall]] | Chez Scheme | James Marshall    | Original Metacat. | *No*: [[https://www.scheme.com/swl.html][wcl]] depenency.         | [[http://science.slc.edu/~jmarshall/metacat][slc.edu]]                 |
+| Project          | Language              | Author            | Notes             | Currentl Runs              | Source                  |
+|------------------+-----------------------+-------------------+-------------------+----------------------------+-------------------------|
+| [[./copycat-ajhager][copycat-ajhager]]  | Python                | ajhager           |                   | *Yes*: `nix run`             | [[https://github.com/ajhager/copycat][ajhager/copycat]]         |
+| [[./copycat-jalanb][copycat-jalanb]]   | Python                | jalanb            | Clean.            | *Yes*: `nix run`.            | [[https://github.com/jalanb/co.py.cat][jalanb/co.py.cat]]        |
+| [[./copycat-jalanb][copycat-mitchell]] | Lucid/Sun Common Lisp | Michelle Mitchell | Original Copycat. | *No*: Obsolet language.      | [[https://github.com/fargonauts/copycat-lisp][fargonauts/copycat-lisp]] |
+| [[./copycat-paul][copycat-paul]]     | JavaScript            | Paul-G            | Good.             | *Yes*: open [[./copycat-paul/dist/index.html][dist/index.html]]. | [[https://github.com/Paul-G2/copycat-js][Paul-G2/copycat-js]]      |
+| [[./seqsee-amahalbal][seqsee-amahalbal]] | Python                | Abhijit Mahabal   | FARG functions.   | *Somewhat*                   | [[https://github.com/amahabal/PySeqsee][amahabal/PySeqsee]]       |
+| [[./metacat-marshall][metacat-marshall]] | Chez Scheme           | James Marshall    | Original Metacat. | *No*: [[https://www.scheme.com/swl.html][wcl]] depenency.         | [[http://science.slc.edu/~jmarshall/metacat][slc.edu]]                 |
 # |      | [[./copycat-fargonauts][copycat-fargonauts]] | Python      | fargonauts        |                         | [[https://github.com/fargonauts/copycat][github]]  |
 * Notes
 ** seqsee-amahalbal
@@ -38,13 +38,15 @@ nix run .#default -- run bongard --left 1 2 --right 3 --expected_output 4
 * Papers
 Academic papers related to FARG may be found in the [[./papers][papers/]] directory.
 * Todo
-** [ ] configure projects to run [0%]
-*** [ ] copycat-ajhager
-*** [ ] copycat-jalanb
-*** [ ] copycat-mitchell
-*** [ ] copycat-paul
-*** [ ] seqsee-amahalbal
-*** [ ] metacat-marshall
+** [ ] configure projects to run [42%]
+*** [X] copycat-ajhager
+*** [X] copycat-jalanb
+*** [-] copycat-mitchell
++ give up and use [[https://github.com/gregdetre/copycat-clojure][gregdetre/copycat-clojure]] instead?
+*** [X] copycat-paul
+*** [?] seqsee-amahalbal
+**** [ ] figure out pyseqsee & bongard
+*** [-] metacat-marshall
 ** [ ] create package for each project
 in [[./flake.nix]].
 * Other links
