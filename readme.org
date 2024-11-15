@@ -6,8 +6,8 @@
 * Welcome
 This repository consists of a collection of FARG-related software for you to explore.
 ** Goal
-*fargtown*'s goal is to archive and package these projects with as little modification as possible so that they can be run as intended from their source code within a development environment defined with [[https://nixos.org][Nix]].
-* Overview
+*fargtown*'s goal is to archive and package open source FARG projects they can may run as intended within a [[https://nixos.org][Nix]] development environment.
+* Projects
 | Runs | Project          | Language    | Author            | Notes                   | Source                         |
 |------+------------------+-------------+-------------------+-------------------------+--------------------------------|
 | ?    | [[./copycat-ajhager][copycat-ajhager]]  | Python      | ajhager           |                         | [[https://github.com/ajhager/copycat][ajhager/copycat]]         |
@@ -17,5 +17,17 @@ This repository consists of a collection of FARG-related software for you to exp
 | ?    | [[./seqsee-amahalbal][seqsee-amahalbal]] | Python      | Abhijit Mahabal   | FARG-related functions. | [[https://github.com/amahabal/PySeqsee][amahabal/PySeqsee]]       |
 | ?    | [[./metacat-marshall][metacat-marshall]] | Scheme      | James Marshall    | Original Metacat.       | [[http://science.slc.edu/~jmarshall/metacat][slc.edu]]                        |
 # |      | [[./copycat-fargonauts][copycat-fargonauts]] | Python      | fargonauts        |                         | [[https://github.com/fargonauts/copycat][github]]  |
+* Papers
+Academic papers related to FARG may be found in the [[./papers][papers/]] directory.
+* Todo
+** [ ] configure projects to run [0%]
+*** [ ] copycat-ajhager
+*** [ ] copycat-jalanb
+*** [ ] copycat-mitchell
+*** [ ] copycat-paul
+*** [ ] seqsee-amahalbal
+*** [ ] metacat-marshall
+** [ ] create package for each project
+in [[./flake.nix]].
 * Other links
 ** [[https://github.com/speakeasy/CopyCat][Copycat (Java)]]
