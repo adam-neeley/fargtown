@@ -9,8 +9,9 @@ This repository consists of a collection of FARG-related software for you to exp
 *fargtown*'s goal is to archive and package open source FARG projects they can may run as intended within a [[https://nixos.org][Nix]] development environment.
 * Projects
 | Project          | Language    | Author            | Notes                   | Runs               | Source                  |
+|------------------+-------------+-------------------+-------------------------+--------------------+-------------------------|
 | [[./copycat-ajhager][copycat-ajhager]]  | Python      | ajhager           |                         | ?                  | [[https://github.com/ajhager/copycat][ajhager/copycat]]         |
-| [[./copycat-jalanb][copycat-jalanb]]   | Python      | jalanb            | Clean.                  | ?                  | [[https://github.com/jalanb/co.py.cat][jalanb/co.py.cat]]        |
+| [[./copycat-jalanb][copycat-jalanb]]   | Python      | jalanb            | Clean.                  | Yes, `nix run`.    | [[https://github.com/jalanb/co.py.cat][jalanb/co.py.cat]]        |
 | [[./copycat-jalanb][copycat-mitchell]] | Common Lisp | Michelle Mitchell | Original Copycat.       | *No*, [[https://www.scheme.com/swl.html][wcl]] depenency. | [[https://github.com/fargonauts/copycat-lisp][fargonauts/copycat-lisp]] |
 | [[./copycat-paul][copycat-paul]]     | JavaScript  | Paul-G            | Good.                   | ?                  | [[https://github.com/Paul-G2/copycat-js][Paul-G2/copycat-js]]      |
 | [[./seqsee-amahalbal][seqsee-amahalbal]] | Python      | Abhijit Mahabal   | FARG-related functions. | ?                  | [[https://github.com/amahabal/PySeqsee][amahabal/PySeqsee]]       |
