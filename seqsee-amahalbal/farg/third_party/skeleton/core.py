@@ -1,6 +1,7 @@
 """
 Core skeleton component
 """
+
 import codecs
 import collections
 import datetime
@@ -12,8 +13,13 @@ import shutil
 import sys
 import weakref
 
-from farg.third_party.skeleton.utils import (get_loggger, get_file_mode,
-                                             vars_to_optparser, prompt)
+from farg.third_party.skeleton.utils import (
+    get_loggger,
+    get_file_mode,
+    vars_to_optparser,
+    prompt,
+)
+
 _LOG = get_loggger(__name__)
 
 
@@ -22,8 +28,7 @@ class SkeletonError(Exception):
 
 
 class TemplateKeyError(KeyError, SkeletonError):
-    """Raised by Skeleton when a template required an unknown variable
-    """
+    """Raised by Skeleton when a template required an unknown variable"""
 
     #: Name of the unexpected variable
     variable_name = None
@@ -37,13 +42,14 @@ class TemplateKeyError(KeyError, SkeletonError):
         self.file_path = file_path
 
     def __str__(self):
-        return ("Found unexpected variable %r in %r."
-            % (self.variable_name, self.file_path,))
+        return "Found unexpected variable %r in %r." % (
+            self.variable_name,
+            self.file_path,
+        )
 
 
 class FileNameKeyError(KeyError, SkeletonError):
-    """Raised by Skeleton when a file name cannot be formatted
-    """
+    """Raised by Skeleton when a file name cannot be formatted"""
 
     #: Name of the unexpected variable
     variable_name = None
@@ -57,13 +63,14 @@ class FileNameKeyError(KeyError, SkeletonError):
         self.file_path = file_path
 
     def __str__(self):
-        return ("Found unexpected variable %r in file name %r"
-            % (self.variable_name, self.file_path))
+        return "Found unexpected variable %r in file name %r" % (
+            self.variable_name,
+            self.file_path,
+        )
 
 
 class ValidateError(SkeletonError):
-    """Raised if a variable value is invalid .
-    """
+    """Raised if a variable value is invalid ."""
 
 
 def run_requirements_last(skel_method):
@@ -72,6 +79,7 @@ def run_requirements_last(skel_method):
     The return wrapper will run the same method of the required
     skeleton instances after the wrapped method exists.
     """
+
     def wrapper(self, *args, **kw):
         """Method wrapper."""
         result = skel_method(self, *args, **kw)
@@ -79,6 +87,7 @@ def run_requirements_last(skel_method):
             if hasattr(skel, skel_method.__name__):
                 getattr(skel, skel_method.__name__)(*args, **kw)
         return result
+
     functools.update_wrapper(wrapper, skel_method)
     return wrapper
 
@@ -89,17 +98,19 @@ def run_requirements_first(skel_method):
     The return wrapper will first run the same method of the required
     skeleton instances.
     """
+
     def wrapper(self, *args, **kw):
         """Method wrapper."""
         for skel in self.required_skeletons_instances:
             if hasattr(skel, skel_method.__name__):
                 getattr(skel, skel_method.__name__)(*args, **kw)
         return skel_method(self, *args, **kw)
+
     functools.update_wrapper(wrapper, skel_method)
     return wrapper
 
 
-class Skeleton(collections.MutableMapping):
+class Skeleton(collections.abc.MutableMapping):
     """Skeleton Class.
 
     It should have a `src` attribute set to the path to the skeleton folder
@@ -131,9 +142,9 @@ class Skeleton(collections.MutableMapping):
     required_skeletons = []
 
     #: Encoding of template file (UTF-8 by default)
-    file_encoding = 'UTF-8'
+    file_encoding = "UTF-8"
 
-    template_suffix = '_tmpl'
+    template_suffix = "_tmpl"
     run_dry = False
 
     def __init__(self, skeleton=None, **kw):
@@ -143,7 +154,7 @@ class Skeleton(collections.MutableMapping):
         if isinstance(skeleton, Skeleton):
             self.set_variables = weakref.proxy(skeleton)
         else:
-            self.set_variables = {'year': datetime.datetime.utcnow().year}
+            self.set_variables = {"year": datetime.datetime.utcnow().year}
             if skeleton is not None:
                 self.set_variables.update(skeleton)
         self.set_variables.update(kw)
@@ -171,9 +182,9 @@ class Skeleton(collections.MutableMapping):
         """
         if self.src is None:
             raise AttributeError(
-                "The src attribute of the %s Skeleton is not set" %
-                self.__class__.__name__
-                )
+                "The src attribute of the %s Skeleton is not set"
+                % self.__class__.__name__
+            )
 
         mod = sys.modules[self.__class__.__module__]
         mod_dir = os.path.dirname(mod.__file__)
@@ -265,10 +276,7 @@ class Skeleton(collections.MutableMapping):
         """
         self.run_dry = run_dry
 
-        _LOG.info(
-            "Rendering %s skeleton at %r...",
-            self.__class__.__name__,
-            dst_dir)
+        _LOG.info("Rendering %s skeleton at %r...", self.__class__.__name__, dst_dir)
 
         self.check_variables()
 
@@ -280,25 +288,22 @@ class Skeleton(collections.MutableMapping):
         _LOG.debug("Getting skeleton from %r" % real_src)
 
         for dir_path, dir_names, file_names in os.walk(real_src):
-            rel_dir_path = dir_path[real_src_len:].lstrip(r'\/')
+            rel_dir_path = dir_path[real_src_len:].lstrip(r"\/")
 
-            #copy files
+            # copy files
             for file_name in file_names:
                 src = os.path.join(dir_path, file_name)
                 dst = os.path.join(
-                    dst_dir,
-                    rel_dir_path,
-                    self._format_file_name(file_name, dir_path)
-                    )
+                    dst_dir, rel_dir_path, self._format_file_name(file_name, dir_path)
+                )
                 self._copy_file(src, dst)
 
-            #copy directories
+            # copy directories
             for dir_name in dir_names:
                 src = os.path.join(dir_path, dir_name)
                 dst = os.path.join(
-                    dst_dir,
-                    rel_dir_path,
-                    self.template_formatter(dir_name))
+                    dst_dir, rel_dir_path, self.template_formatter(dir_name)
+                )
                 self._mkdir(dst, like=src)
 
     def run(self, dst_dir, run_dry=False):
@@ -328,9 +333,8 @@ class Skeleton(collections.MutableMapping):
             parser.error("incorrect number of arguments")
 
         logging.basicConfig(
-            level=options.verbose_,
-            format="%(levelname)s - %(message)s"
-            )
+            level=options.verbose_, format="%(levelname)s - %(message)s"
+        )
 
         for var in skel.variables:
             value = getattr(options, var.name)
@@ -340,16 +344,18 @@ class Skeleton(collections.MutableMapping):
         skel.run(args[0])
 
     def configure_parser(self):
-        """Configure parser for Skeleton.cmd().
-        """
+        """Configure parser for Skeleton.cmd()."""
         parser = optparse.OptionParser(usage="%prog [options] dst_dir")
-        parser.add_option("-q", "--quiet",
-            action="store_const", const=logging.FATAL, dest="verbose_")
-        parser.add_option("-v", "--verbose",
-            action="store_const", const=logging.INFO, dest="verbose_")
-        parser.add_option("-d", "--debug",
-            action="store_const", const=logging.DEBUG, dest="verbose_")
-        parser.set_default('verbose_', logging.ERROR)
+        parser.add_option(
+            "-q", "--quiet", action="store_const", const=logging.FATAL, dest="verbose_"
+        )
+        parser.add_option(
+            "-v", "--verbose", action="store_const", const=logging.INFO, dest="verbose_"
+        )
+        parser.add_option(
+            "-d", "--debug", action="store_const", const=logging.DEBUG, dest="verbose_"
+        )
+        parser.set_default("verbose_", logging.ERROR)
 
         parser = vars_to_optparser(self.variables, parser=parser)
         return parser
@@ -365,10 +371,7 @@ class Skeleton(collections.MutableMapping):
         try:
             return self.template_formatter(file_name)
         except (KeyError,) as exc:
-            raise FileNameKeyError(
-                exc.args[0],
-                os.path.join(dir_path, file_name)
-                )
+            raise FileNameKeyError(exc.args[0], os.path.join(dir_path, file_name))
 
     def _mkdir(self, path, like=None):
         """Create a directory (using os.mkdir)
@@ -388,7 +391,7 @@ class Skeleton(collections.MutableMapping):
         """
         if dst.endswith(self.template_suffix):
             try:
-                self._format_file(src, dst[:-len(self.template_suffix)])
+                self._format_file(src, dst[: -len(self.template_suffix)])
             except (KeyError,) as exc:
                 raise TemplateKeyError(exc.args[0], src)
         else:
@@ -415,7 +418,7 @@ class Skeleton(collections.MutableMapping):
             fd_dst = None
             try:
                 fd_src = codecs.open(src, encoding=self.file_encoding)
-                fd_dst = codecs.open(dst, 'w', encoding=self.file_encoding)
+                fd_dst = codecs.open(dst, "w", encoding=self.file_encoding)
                 fd_dst.write(self.template_formatter(fd_src.read()))
             finally:
                 if fd_src is not None:
@@ -440,6 +443,7 @@ class Var(object):
     pep8 variable are easier to set with a Skeleton constructor and you should
     not assume the skeleton template formatter can use any name formatting.
     """
+
     _prompt = staticmethod(prompt)
 
     def __init__(self, name, description=None, default=None, intro=None):
@@ -449,8 +453,11 @@ class Var(object):
         self.intro = intro
 
     def __repr__(self):
-        return '<%s %s default=%r>' % (
-            self.__class__.__name__, self.name, self.default,)
+        return "<%s %s default=%r>" % (
+            self.__class__.__name__,
+            self.name,
+            self.default,
+        )
 
     @property
     def display_name(self):
@@ -459,7 +466,7 @@ class Var(object):
         Allows to get nice looking name at prompt while following pip8 guidance
         (a Var name can be use as argument of skeleton to set the variable).
         """
-        return self.name.replace('_', ' ').title()
+        return self.name.replace("_", " ").title()
 
     @property
     def full_description(self):
@@ -467,17 +474,20 @@ class Var(object):
         is set.
         """
         if self.description:
-            return '%s (%s)' % (self.display_name, self.description,)
+            return "%s (%s)" % (
+                self.display_name,
+                self.description,
+            )
         else:
             return self.display_name
 
     @property
     def prompt(self):
         """Message to Prompt"""
-        prompt_ = 'Enter %s' % self.full_description
+        prompt_ = "Enter %s" % self.full_description
         if self.default is not None:
-            prompt_ += ' [%r]' % self.default
-        prompt_ += ': '
+            prompt_ += " [%r]" % self.default
+        prompt_ += ": "
         return prompt_
 
     def do_prompt(self):
@@ -501,7 +511,6 @@ class Var(object):
             except (ValidateError,) as exc:
                 print(str(exc))
 
-
     def validate(self, response):
         """Checks the user has given a non empty value or that the variable has
         a default.
@@ -519,9 +528,7 @@ class Var(object):
 
 
 class Bool(Var):
-    """Var accepting "y/n"
-
-    """
+    """Var accepting "y/n" """
 
     @property
     def full_description(self):
@@ -530,19 +537,20 @@ class Bool(Var):
 
         """
         if self.description:
-            return '%s (%s - y/N)' % (self.display_name, self.description,)
+            return "%s (%s - y/N)" % (
+                self.display_name,
+                self.description,
+            )
         else:
-            return '%s (y/N)' % self.display_name
+            return "%s (y/N)" % self.display_name
 
     @property
     def prompt(self):
-        """Message to Prompt (with default converted to "y" or "n")
-
-        """
-        prompt_ = 'Enter %s' % self.full_description
+        """Message to Prompt (with default converted to "y" or "n")"""
+        prompt_ = "Enter %s" % self.full_description
         if self.default is not None:
-            prompt_ += ' [%r]' % (self.default and 'y' or 'N')
-        prompt_ += ': '
+            prompt_ += " [%r]" % (self.default and "y" or "N")
+        prompt_ += ": "
         return prompt_
 
     def validate(self, response):
@@ -554,11 +562,17 @@ class Bool(Var):
 
         """
         response = response.strip().upper()
-        if response in ('Y', 'YES',):
+        if response in (
+            "Y",
+            "YES",
+        ):
             return True
-        elif response in ('N', 'NO',):
+        elif response in (
+            "N",
+            "NO",
+        ):
             return False
-        elif response == '':
+        elif response == "":
             if self.default is not None:
                 return self.default
             else:

@@ -1,5 +1,5 @@
 {
-  description = "arc dev env";
+  description = "seqsee-amahalbal";
 
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
   inputs.pyproject-nix.url = "github:nix-community/pyproject.nix";
@@ -12,14 +12,12 @@
         pkgs = nixpkgs.legacyPackages.${system};
         project =
           pyproject-nix.lib.project.loadPyproject { projectRoot = ./.; };
-        python = pkgs.python313;
+        python = pkgs.python312;
         arg = project.renderers.withPackages { inherit python; };
         pythonEnv = python.withPackages arg;
       in {
         devShells.default = pkgs.mkShell {
-          packages = with pkgs;
-            [
-            ] ++ [ pythonEnv ];
+          packages = with pkgs; [ python312Packages.tkinter ] ++ [ pythonEnv ];
         };
         packages.default =
           let attrs = project.renderers.buildPythonPackage { inherit python; };

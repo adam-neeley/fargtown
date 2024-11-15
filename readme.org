@@ -17,6 +17,24 @@ This repository consists of a collection of FARG-related software for you to exp
 | [[./seqsee-amahalbal][seqsee-amahalbal]] | Python      | Abhijit Mahabal   | FARG functions.   | ?                          | [[https://github.com/amahabal/PySeqsee][amahabal/PySeqsee]]       |
 | [[./metacat-marshall][metacat-marshall]] | Chez Scheme | James Marshall    | Original Metacat. | *No*: [[https://www.scheme.com/swl.html][wcl]] depenency.         | [[http://science.slc.edu/~jmarshall/metacat][slc.edu]]                 |
 # |      | [[./copycat-fargonauts][copycat-fargonauts]] | Python      | fargonauts        |                         | [[https://github.com/fargonauts/copycat][github]]  |
+* Notes
+** seqsee-amahalbal
+This FARG framework comes with three "apps": *seqsee*, *bongard*, and *pyseqsee*.
+*** seqsee
+Runs the best.
+#+begin_src
+nix run .#default -- run seqsee --sequence 1 2 3 4
+#+end_src
+*** pyseqsee
+Doesn't display much.
+#+begin_src
+nix run .#default -- run pyseqsee --sequence 1 2 3 4
+#+end_src
+*** bongard
+No idea.
+#+begin_src
+nix run .#default -- run bongard --left 1 2 --right 3 --expected_output 4
+#+end_src
 * Papers
 Academic papers related to FARG may be found in the [[./papers][papers/]] directory.
 * Todo

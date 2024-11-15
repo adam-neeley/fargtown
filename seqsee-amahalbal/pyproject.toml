@@ -1,12 +1,14 @@
 [project]
-name = "pyseqsee"
-version = "11.01.24"
-requires-python = ">=3.13"
+name = "pyseqsee-amahalbal"
+version = "0.2.3a1"
+requires-python = "==3.12"
 
-dependencies = [
-  "numpy",
-  "frozendict",
-]
+# dependencies = [
+#   "tkinter",
+# ]
+
+[project.scripts]
+main = "farg.tools:main"
 
 # setup(
 #     name="PySeqsee",
