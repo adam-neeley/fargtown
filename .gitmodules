@@ -1,12 +1,18 @@
-[submodule "copycat"]
-	path = copycat
-	url = ./copycat
-[submodule "PySeqsee"]
-	path = PySeqsee
-	url = ./PySeqsee
-[submodule "synergy"]
-	path = synergy
-	url = ./synergy
-[submodule "Metacat"]
-	path = Metacat
-	url = ./Metacat
+[submodule "seqsee-amahalbal"]
+	path = seqsee-amahalbal
+	url = ./seqsee-amahalbal
+[submodule "copycat-ajhager"]
+	path = copycat-ajhager
+	url = ./copycat-ajhager
+[submodule "metacat-marshall"]
+	path = metacat-marshall
+	url = ./metacat-marshall
+[submodule "copycat-paul"]
+	path = copycat-paul
+	url = ./copycat-paul
+[submodule "copycat-jalanb"]
+	path = copycat-jalanb
+	url = ./copycat-jalanb
+[submodule "copycat-fargonauts"]
+	path = copycat-fargonauts
+	url = ./copycat-fargonauts

@@ -1,9 +1,14 @@
 #+title: fargtown
 #+description: A collection of software related to the Fluid Analogies Research Group (FARG).
 * Overview
-| Project                  | Language | Author     | Description                                        | Source                                                 |
-|--------------------------+----------+------------+----------------------------------------------------+--------------------------------------------------------|
-| [[./copycat][copycat]]   | Python 3 | fargonauts |                                                    | [[https://github.com/fargonauts/copycat][github]]      |
-| [[./PySeqsee][PySeqsee]] | Python 3 | amahabal   |                                                    | [[https://github.com/amahabal/PySeqsee][github]]       |
-| [[./synergy][synergy]]   | Python 3 | monadam    | Experimental [[https://arcprize.org][ARC]] solver. |                                                        |
-| [[./Metacat][Metacat]]   | Scheme   | jmarshall  | Original Metacat.                                  | [[http://science.slc.edu/~jmarshall/metacat][slc.edu]] |
+| Runs | Project            | Language    | Author            | Notes                   | Source  |
+|------+--------------------+-------------+-------------------+-------------------------+---------|
+| [ ]  | [[./copycat-ajhager][copycat-ajhager]]    | Python      | ajhager           |                         | [[https://github.com/ajhager/copycat][github]]  |
+| [ ]  | [[./copycat-fargonauts][copycat-fargonauts]] | Python      | fargonauts        |                         | [[https://github.com/fargonauts/copycat][github]]  |
+| [ ]  | [[./copycat-jalanb][copycat-jalanb]]     | Python      | jalanb            | Clean.                  | [[https://github.com/jalanb/co.py.cat][github]]  |
+| [ ]  | [[./copycat-jalanb][copycat-mitchell]]   | Common Lisp | Michelle Mitchell | Original Copycat.       | [[https://github.com/fargonauts/copycat-lisp][github]]  |
+| [ ]  | [[./copycat-paul][copycat-paul]]       | JavaScript  | Paul-G            | Good.                   | [[https://github.com/Paul-G2/copycat-js][github]]  |
+| [ ]  | [[./seqsee-amahalbal][seqsee-amahalbal]]   | Python      | Abhijit Mahabal   | FARG-related functions. | [[https://github.com/amahabal/PySeqsee][github]]  |
+| [ ]  | [[./metacat-marshall][metacat-marshall]]   | Scheme      | James Marshall    | Original Metacat.       | [[http://science.slc.edu/~jmarshall/metacat][slc.edu]] |
+* Other links
+** [[https://github.com/speakeasy/CopyCat][Copycat (Javascript)]]
