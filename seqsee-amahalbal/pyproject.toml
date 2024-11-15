@@ -1,0 +1,37 @@
+[project]
+name = "pyseqsee"
+version = "11.01.24"
+requires-python = ">=3.13"
+
+dependencies = [
+  "numpy",
+  "frozendict",
+]
+
+# setup(
+#     name="PySeqsee",
+#     version=version,
+#     url='https://github.com/amahabal/PySeqsee',
+#     author='Abhijit Mahabal',
+#     author_email='pyseqsee@googlegroups.com',
+#     description="Python framework for writing programs to solve complex problems not amenable to brute force. The architecture is a descendant of Douglas Hofstadter and Melanie Mitchell's Copycat architecture.",
+#     packages=packages,
+#     data_files=data_files,
+
+#     classifiers=[
+#         'Development Status :: 3 - Alpha',
+#         'Intended Audience :: Developers',
+#         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+#         'Operating System :: OS Independent',
+#         'Programming Language :: Python',
+#         'Programming Language :: Python :: 3.1',
+#    ],
+#    entry_points={
+#         'console_scripts': [
+#             'farg=farg.tools:main',
+#         ],
+#     },
+# )
+
+# [project.scripts]
+# chunk-tree = "demo:chunk_tree"

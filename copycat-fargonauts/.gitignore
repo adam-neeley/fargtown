@@ -1,0 +1,42 @@
+*.py[co]
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+.log
+copycat.log
+
+# Other filesystems
+.svn
+.DS_Store
+
+# Editors
+.*.swp
+
+# Output
+output/*
+copycat.log
+papers/*.log
+papers/*.pdf
+papers/*.out
+papers/*.aux
+papers/words
+*.txt
+/.direnv/
+.envrc

@@ -1,0 +1,17 @@
+[project]
+name = 'copycat'
+version = '0.0.1'
+packages = ['copycat']
+requires-python = "3.10"
+
+author = "The Fluid Analogies Research Group, J Alan Brogan, and Arthur O'Dwyer"
+author_email = 'arthur.j.odwyer@gmail.com'
+description = "Python implementation of Douglas Hofstadter's Copycat."
+license = 'MIT license'
+keywords = 'ai analogy copycat farg fargitecture hofstadter slipnet'
+url = 'https://github.com/Quuxplusone/co.py.cat'
+
+dependencies = [
+  "numpy",
+  "matplotlib",
+]
