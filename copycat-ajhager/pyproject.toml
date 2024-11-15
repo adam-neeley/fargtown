@@ -1,0 +1,7 @@
+[project]
+name = "copycat-ajhager"
+version = "1.0.0" # unknown
+requires-python = ">=3.12"
+
+[project.scripts]
+main = "copycat:main_cli.main"
