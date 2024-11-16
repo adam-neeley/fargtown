@@ -1,5 +1,5 @@
 {
-  description = "seqsee-amahalbal";
+  description = "seqsee-amahabal";
 
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
   inputs.pyproject-nix.url = "github:nix-community/pyproject.nix";

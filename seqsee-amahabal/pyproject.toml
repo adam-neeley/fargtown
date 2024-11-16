@@ -1,5 +1,5 @@
 [project]
-name = "pyseqsee-amahalbal"
+name = "pyseqsee-amahabal"
 version = "0.2.3a1"
 requires-python = "==3.12"
 
